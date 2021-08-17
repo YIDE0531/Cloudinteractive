@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">cloudinteractive林宜得</string>
+    <string name="app_name">cloudinteractive林宜德</string>
+    <string name="request_api">Request API</string>
 </resources>
