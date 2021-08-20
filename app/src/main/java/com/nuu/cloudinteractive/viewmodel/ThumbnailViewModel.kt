@@ -6,9 +6,10 @@ import com.nuu.cloudinteractive.ApiInterface
 import com.nuu.cloudinteractive.config.AppConfig
 import com.nuu.cloudinteractive.model.ThumbnailInfo
 import com.nuu.cloudinteractive.model.ThumbnailRepository
+import java.util.*
 
 class ThumbnailViewModel: ViewModel(){
-    val thumbInfoArray = MutableLiveData<Array<ThumbnailInfo>>()
+    val thumbInfoAllArray = MutableLiveData<Array<ThumbnailInfo>>()
 
     init {
         getPhotosInfo()  // call api
@@ -19,7 +20,7 @@ class ThumbnailViewModel: ViewModel(){
             ApiInterface {
             override fun onSuccess(dataSting: String) {
                 val dataModelArray = Gson().fromJson(dataSting, Array<ThumbnailInfo>::class.java)
-                thumbInfoArray.postValue(dataModelArray)
+                thumbInfoAllArray.postValue(dataModelArray)
             }
 
             override fun onFailed(errorMsg: String?) {

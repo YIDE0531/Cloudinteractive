@@ -36,10 +36,10 @@ class ImageUtils {
 
                         override fun onResponse(call: Call?, response: Response?) {
                             response?.body()?.byteStream() // Read the data from the stream
+                            writeFile(response!!.body().bytes(), filePath)
+                            val bytes = File(filePath).readBytes()
+                            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                             handler.post {
-                                writeFile(response!!.body().bytes(), filePath)
-                                val bytes = File(filePath).readBytes()
-                                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                                 view.setImageBitmap(bitmap)
                             }
                         }

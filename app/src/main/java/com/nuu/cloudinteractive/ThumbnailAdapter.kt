@@ -8,12 +8,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nuu.cloudinteractive.databinding.ListItemThumbnailBinding
 import com.nuu.cloudinteractive.model.ThumbnailInfo
 import com.nuu.cloudinteractive.viewmodel.ThumbnailViewModel
+import java.util.*
 
 class ThumbnailAdapter(private val viewModel: ThumbnailViewModel, private val context: Context): RecyclerView.Adapter<ThumbnailAdapter.ThumbnailHolder>() {
-    var thumbInfoArray: Array<ThumbnailInfo>? = viewModel.thumbInfoArray.value
+    private var thumbInfoArray: Array<ThumbnailInfo>? = null
+    private var thumbInfoAllArray: Array<ThumbnailInfo>? = null
+    private var nowCount = 51
 
-    fun updateList(list: Array<ThumbnailInfo>){
-        thumbInfoArray = list
+    fun updateThumbInfoAllArray(list: Array<ThumbnailInfo>){
+        thumbInfoAllArray = list
+        thumbInfoArray = (Arrays.copyOfRange(thumbInfoAllArray,0,nowCount))
+        nowCount = thumbInfoArray!!.size
+        notifyDataSetChanged()
+    }
+
+    fun updateList(){
+        if (thumbInfoAllArray!!.size > nowCount + 50) {
+            nowCount += 50
+        }else {
+            nowCount = thumbInfoAllArray!!.size
+        }
+        thumbInfoArray = (Arrays.copyOfRange(thumbInfoAllArray,0,nowCount))
         notifyDataSetChanged()
     }
 
