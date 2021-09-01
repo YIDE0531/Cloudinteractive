@@ -13,7 +13,7 @@ import java.util.*
 class ThumbnailAdapter(private val viewModel: ThumbnailViewModel, private val context: Context): RecyclerView.Adapter<ThumbnailAdapter.ThumbnailHolder>() {
     private var thumbInfoArray: Array<ThumbnailInfo>? = null
     private var thumbInfoAllArray: Array<ThumbnailInfo>? = null
-    private var nowCount = 51
+    private var nowCount = 2000
 
     fun updateThumbInfoAllArray(list: Array<ThumbnailInfo>){
         thumbInfoAllArray = list
@@ -23,8 +23,8 @@ class ThumbnailAdapter(private val viewModel: ThumbnailViewModel, private val co
     }
 
     fun updateList(){
-        if (thumbInfoAllArray!!.size > nowCount + 50) {
-            nowCount += 50
+        if (thumbInfoAllArray!!.size > nowCount + 1000) {
+            nowCount += 1000
         }else {
             nowCount = thumbInfoAllArray!!.size
         }

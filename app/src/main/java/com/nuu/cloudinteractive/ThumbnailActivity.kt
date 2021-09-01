@@ -36,9 +36,8 @@ class ThumbnailActivity : AppCompatActivity() {
 
         thumbnailViewModel.thumbInfoAllArray.observe(this, {
             thumbnailAdapter.updateThumbInfoAllArray(it)
+            setRecyclerViewScrollListener()
         })
-
-        setRecyclerViewScrollListener()
     }
 
     private fun setRecyclerViewScrollListener() {
